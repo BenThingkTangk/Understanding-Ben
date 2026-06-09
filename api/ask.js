@@ -1,13 +1,20 @@
 export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   const { query } = req.body;
   const apiKey = (process.env.PERPLEXITY_API_KEY || '').trim();
-    console.log('KEY_DEBUG: len=' + apiKey.length + ' prefix=' + apiKey.substring(0, 8) + ' suffix=' + apiKey.slice(-4));
 
   if (!apiKey) {
     return res.status(500).json({ error: 'API key is missing in server environment.' });
   }
 
-  const systemPrompt = `You are ATOM, an advanced intelligence engine built to help a mother understand her autistic savant son, Ben. Ben has autism, CTE, kidney disease, chronic back pain, and depression. He works in intense hyperfocus bursts then crashes hard and needs extended sleep and recovery. He loves his mum deeply and is grateful for her support. Explain everything in clear, warm, medically accurate language that a loving parent can understand. Never mention CIA or Navy SEALs.`;
+  if (!query) {
+    return res.status(400).json({ error: 'Query is required.' });
+  }
+
+  const systemPrompt = `You are ATOM, an advanced intelligence engine built to help a mother understand her autistic savant son, Ben. Ben has autism, CTE, kidney strain, and chronic back pain. He works in hyperfocused bursts then needs days to recover. He is deeply grateful for his mother and Kevin. Answer questions clearly, with empathy and medical accuracy. No jargon. Plain language. Focused on Ben's specific conditions.`;
 
   try {
     const response = await fetch('https://api.perplexity.ai/chat/completions', {
@@ -17,8 +24,8 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-      model: 'sonar',
-              messages: [
+        model: 'sonar',
+        messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: query }
         ]
@@ -28,7 +35,7 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('Perplexity API Error:', data);
+      console.error('Perplexity API Error:', JSON.stringify(data));
       return res.status(response.status).json(data);
     }
 
@@ -38,7 +45,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ result: text });
   } catch (err) {
-    console.error('Handler error:', err);
+    console.error('Handler error:', err.message);
     return res.status(500).json({ error: err.message });
   }
 }
