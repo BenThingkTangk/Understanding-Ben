@@ -228,6 +228,7 @@
             font-size: 14px;
             color: var(--text-secondary);
             display: none;
+            white-space: pre-wrap;
         }
 
         @media (max-width: 768px) {
@@ -274,7 +275,7 @@
                 <div class="card-label">02 // HEALTH MARKERS</div>
                 <h2>Physical Load</h2>
                 <p>Autism, CTE, kidney strain, and chronic back pain create a baseline "Threat Level" that I live with daily. Sleeping all weekend is my system's only way to flush the stress and inflammation.</p>
-                <p>I'm holding on. I'm grateful to you and Kevin for being my anchor while I try to build our future.</p>
+                <p>I'm holding on. I'm grateful to you and Kevin for being my anchor while I try to build my future.</p>
             </div>
 
             <div class="card span-12 ask-atom-container">
@@ -283,7 +284,7 @@
                 <p>Ask anything about my situation. This engine uses Perplexity Sonar Pro to explain my autistic wiring, medical challenges, and needs in plain language.</p>
                 <div class="input-wrapper">
                     <textarea id="atom-query" placeholder="Ask ATOM: e.g., 'Why does Ben need to sleep for 3 days after a project?'"></textarea>
-                    <button class="send-btn" onclick="askAtom()">INITIALIZE QUERY</button>
+                    <button class="send-btn" id="query-btn">INITIALIZE QUERY</button>
                 </div>
                 <div id="response-area" class="response-area">
                     <div class="card-label">ΔTOM RESPONSE //</div>
@@ -295,13 +296,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Particle Background Logic
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.getElementById('canvas-container').appendChild(renderer.domElement);
-
         const geometry = new THREE.BufferGeometry();
         const vertices = [];
         for (let i = 0; i < 1500; i++) {
@@ -312,38 +311,21 @@
         const points = new THREE.Points(geometry, material);
         scene.add(points);
         camera.position.z = 500;
-
-        function animate() {
-            requestAnimationFrame(animate);
-            points.rotation.y += 0.001;
-            renderer.render(scene, camera);
-        }
+        function animate() { requestAnimationFrame(animate); points.rotation.y += 0.001; renderer.render(scene, camera); }
         animate();
+        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
 
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // Ask ATOM API Logic
         async function askAtom() {
             const query = document.getElementById('atom-query').value;
             if (!query) return;
-
             const responseArea = document.getElementById('response-area');
             const output = document.getElementById('atom-output');
-            
             responseArea.style.display = 'block';
             output.innerText = "Reaching out to Perplexity core... Decoding signal...";
-
             try {
                 const response = await fetch('https://api.perplexity.ai/chat/completions', {
                     method: 'POST',
-                    headers: {
-                        'Authorization': 'Bearer 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',
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Authorization': 'Bearer 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', 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         model: "sonar-pro",
                         messages: [
@@ -352,13 +334,11 @@
                         ]
                     })
                 });
-                
                 const data = await response.json();
                 output.innerText = data.choices[0].message.content;
-            } catch (err) {
-                output.innerText = "Error decoding signal. Please check connection.";
-            }
+            } catch (err) { output.innerText = "Error decoding signal. Please check connection."; }
         }
+        document.getElementById('query-btn').addEventListener('click', askAtom);
     </script>
 </body>
 </html>
