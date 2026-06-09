@@ -1,6 +1,7 @@
 export default async function handler(req, res) {
   const { query } = req.body;
   const apiKey = (process.env.PERPLEXITY_API_KEY || '').trim();
+    console.log('KEY_DEBUG: len=' + apiKey.length + ' prefix=' + apiKey.substring(0, 8) + ' suffix=' + apiKey.slice(-4));
 
   if (!apiKey) {
     return res.status(500).json({ error: 'API key is missing in server environment.' });
