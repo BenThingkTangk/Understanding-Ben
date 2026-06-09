@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: "sonar-pro",
+        model: "sonar",
         messages: [
           { role: "system", content: "You are ATOM, an advanced intelligence engine built to help a mother understand her autistic savant son, Ben. Ben has autism, depression, CTE, kidney issues, and chronic back pain. He works in intense bursts and needs days of sleep to recover. Be empathetic, clear, and medical-scientific yet accessible. Use deep research to explain his behavior. Never mention CIA or Navy SEALs." },
           { role: "user", content: query }
