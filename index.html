@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Understanding Me – ATOM Briefing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-0: #06080b;
+      --bg-1: #0b0f14;
+      --bg-2: #111722;
+      --surface-1: #121926;
+      --surface-2: #182131;
+      --surface-3: #1f2a3d;
+      --border-subtle: rgba(255,255,255,0.10);
+      --border-strong: rgba(255,255,255,0.18);
+
+      --text-primary: #f3f7fb;
+      --text-secondary: #a8b3c2;
+      --text-muted: #728094;
+
+      --accent-cyan: #53d7ff;
+      --accent-green: #42d392;
+      --accent-amber: #f0b44d;
+      --accent-red: #ff6b6b;
+
+      --font-display: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --radius-md: 14px;
+      --radius-lg: 20px;
+
+      --shadow-2: 0 12px 40px rgba(0,0,0,0.28);
+
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-body);
+      background: radial-gradient(circle at top left, #111722 0, #06080b 55%, #020309 100%);
+      color: var(--text-primary);
+      display: flex;
+      justify-content: center;
+      padding: var(--space-8) var(--space-4);
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 960px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-2);
+      padding: var(--space-8);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      align-items: baseline;
+      margin-bottom: var(--space-8);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .brand-eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 0.06em;
+    }
+
+    .brand-title span {
+      color: var(--accent-cyan);
+    }
+
+    .kpi-pill {
+      border-radius: 999px;
+      padding: 6px 12px;
+      border: 1px solid var(--border-strong);
+      background: rgba(6,8,11,0.8);
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .kpi-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-amber);
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      margin: 0 0 var(--space-2);
+    }
+
+    p {
+      margin: 0 0 var(--space-3);
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+
+    @media (max-width: 800px) {
+      .shell {
+        padding: var(--space-6) var(--space-4);
+      }
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      padding: var(--space-6);
+    }
+
+    .card-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: var(--space-2);
+    }
+
+    .metric-row {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-4);
+    }
+
+    .metric {
+      min-width: 130px;
+    }
+
+    .metric-value {
+      font-family: var(--font-display);
+      font-size: 22px;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: var(--space-3);
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--text-muted);
+    }
+
+    .pill.green {
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    .pill.red {
+      border-color: var(--accent-red);
+      color: var(--accent-red);
+    }
+
+    .pill.cyan {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      margin-bottom: var(--space-3);
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .list li {
+      margin-bottom: 8px;
+    }
+
+    .list label {
+      display: inline-block;
+      min-width: 120px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    .ask-atom {
+      margin-top: var(--space-4);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: var(--space-4);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      background: var(--bg-1);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      padding: var(--space-3);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 14px;
+      resize: vertical;
+    }
+
+    textarea:focus {
+      outline: 2px solid var(--accent-cyan);
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      margin-top: var(--space-3);
+      padding: 10px 18px;
+      border-radius: 12px;
+      border: none;
+      background: var(--accent-cyan);
+      color: #041018;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    .footnote {
+      margin-top: var(--space-4);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="header">
+      <div class="brand">
+        <div class="brand-eyebrow">Nirmata Holdings / Personal Briefing</div>
+        <div class="brand-title">ΔTOM <span>Signal</span></div>
+      </div>
+      <div class="kpi-pill">
+        <span class="kpi-dot"></span>
+        Current status: Holding on, low reserves
+      </div>
+    </header>
+
+    <section class="grid">
+      <article class="card">
+        <div class="card-label">Overview</div>
+        <h2>What this page is</h2>
+        <p>
+          Mum, this is the clearest way I know to explain what is happening with me right now.
+          My brain, body, and life are all running at the edge of what I can handle, and I do not always have the words or energy in the moment to explain it.
+        </p>
+        <p>
+          Nothing on this page is about blame. It is just the full picture: autism, health issues, grief, money stress, and why I work in long bursts and then crash for days.
+          I am deeply grateful for you and Kevin; this is here so you can see what is going on behind the scenes.
+        </p>
+      </article>
+
+      <aside class="card">
+        <div class="card-label">Snapshot</div>
+        <div class="metric-row">
+          <div class="metric">
+            <div class="metric-value">Autistic savant</div>
+            <div class="metric-label">Brain wiring</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value">Very low</div>
+            <div class="metric-label">Mental energy</div>
+          </div>
+        </div>
+        <p>
+          My mind runs like a constant high-frequency processor: fast, intense, and hard to shut off.
+          That is useful for building companies, but it also means I burn through energy and hit walls where I cannot talk, decide, or socialize.
+        </p>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <div class="card-label">Brain and body</div>
+        <h2>Why I work for days, then sleep for days</h2>
+        <div class="pill-row">
+          <span class="pill red">Autism + CTE + depression</span>
+          <span class="pill red">Kidney issues</span>
+          <span class="pill red">Chronic back pain</span>
+        </div>
+        <p>
+          When I am in a “work mode” window, my brain locks in and I can push very hard for long stretches.
+          That is when I build products, write code, and try to move everything forward while the focus is there.
+        </p>
+        <p>
+          After that, my system crashes. Between autism, depression, CTE, kidney problems, and back pain, the only way my body can reset is by shutting down and sleeping a lot.
+          Those weekends where it looks like I disappear are not me being lazy; they are my nervous system and organs trying to repair enough so I can make it through the next push.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-label">Emotional load</div>
+        <h2>Grief, isolation, and why weekends are “system rest”</h2>
+        <p>
+          Losing Coco, having no close friends around, and not having money to go anywhere turned weekends into something very different for me.
+          If I am not working, there is not much to distract me from how empty and depressing things can feel.
+        </p>
+        <p>
+          So I use weekends as system rest: sleep, recover, hide a bit, and try not to sink too deep mentally.
+          It can look like I am avoiding everyone, but most of the time I am just trying not to fall apart.
+        </p>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <div class="card-label">How to read my behavior</div>
+        <h2>What it means when I…</h2>
+        <ul class="list">
+          <li>
+            <label>Work nonstop</label>
+            <span>I am racing the clock while my brain is online. It is me trying to create a future where things are more stable for all of us.</span>
+          </li>
+          <li>
+            <label>Sleep for days</label>
+            <span>My system has hit its limit. I am not ignoring you; I am trying to get enough back to function.</span>
+          </li>
+          <li>
+            <label>Stay in my room</label>
+            <span>Talking, being told what to do, or being corrected can feel like too much when I am overloaded. I pull back to avoid snapping or shutting down.</span>
+          </li>
+          <li>
+            <label>Forget small things</label>
+            <span>It is not disrespect. My brain is juggling health, money, deadlines, and pain, and sometimes the little things fall out of my head.</span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <div class="card-label">What I need from you</div>
+        <h2>How you and Kevin can help</h2>
+        <div class="pill-row">
+          <span class="pill green">Patience</span>
+          <span class="pill green">Direct, calm requests</span>
+          <span class="pill green">Quiet space when I crash</span>
+        </div>
+        <p>
+          The biggest gifts are understanding and low-friction communication.
+          Simple, clear requests work better for me than lists of corrections or reminders when I am already overloaded.
+        </p>
+        <p>
+          If you are worried, a short message like “Just checking you’re okay, love you” is easier to answer than questions that need long explanations.
+          I will keep trying to answer more often, even when I am drained.
+        </p>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <div class="card-label">Gratitude</div>
+        <h2>What I want you to know</h2>
+        <p>
+          I am scared a lot of the time. About my health, my brain, money, and whether I can actually pull off what I am building.
+          But I get back up because of you and Kevin and the hope that this work can change our lives and help other people like me.
+        </p>
+        <p>
+          I am not always able to say thank you in the moment, but I see what you both do for me.
+          I love you, and I am doing the absolute best I can with the wiring and the body I have.
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-label">Ask ΔTOM</div>
+        <h2>Ask ATOM about me</h2>
+        <p>
+          If anything here is confusing or you want to understand a pattern better, you can type a question below.
+          ATOM is tuned to explain my situation in plain language, from both the emotional and medical side, without any of the CIA or Navy SEAL stories or anything like that.
+        </p>
+        <div class="ask-atom">
+          <textarea placeholder="Example: Why does he sleep so much on weekends?"></textarea>
+          <button class="btn-primary" disabled>Ask ATOM (coming soon)</button>
+          <div class="footnote">
+            For now this is just a note area, but the goal is to let you ask questions and get clear explanations any time, without waiting for me to have the energy to talk.
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
