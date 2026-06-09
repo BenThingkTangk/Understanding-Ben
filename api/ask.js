@@ -1,6 +1,10 @@
 export default async function handler(req, res) {
   const { query } = req.body;
-  const apiKey = process.env.PERPLEXITY_API_KEY;
+  const apiKey = (process.env.PERPLEXITY_API_KEY || '').trim();
+
+  if (!apiKey) {
+    return res.status(500).json({ error: "API key is missing in server environment." });
+  }
 
   try {
     const response = await fetch('https://api.perplexity.ai/chat/completions', {
@@ -17,10 +21,17 @@ export default async function handler(req, res) {
         ]
       })
     });
-    
+
     const data = await response.json();
+    
+    if (!response.ok) {
+      console.error("Perplexity API Error:", data);
+      return res.status(response.status).json(data);
+    }
+
     res.status(200).json(data);
   } catch (err) {
+    console.error("Server Error:", err);
     res.status(500).json({ error: err.message });
   }
 }
