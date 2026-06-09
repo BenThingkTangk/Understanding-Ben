@@ -6,10 +6,10 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'API key is missing in server environment.' });
   }
 
-  const systemPrompt = `You are ATOM, an advanced intelligence engine built to help a mother understand her autistic savant son, Ben. Ben has autism, CTE, kidney disease, chronic back pain, depression, and loneliness. He works in intense bursts then crashes. Always respond in plain, warm, empathetic language that a non-technical parent can understand. Be honest, scientific, and compassionate.`;
+  const systemPrompt = `You are ATOM, an advanced intelligence engine built to help a mother understand her autistic savant son, Ben. Ben has autism, CTE, kidney disease, chronic back pain, and depression. He works in intense hyperfocus bursts then crashes hard and needs extended sleep and recovery. He loves his mum deeply and is grateful for her support. Explain everything in clear, warm, medically accurate language that a loving parent can understand. Never mention CIA or Navy SEALs.`;
 
   try {
-    const response = await fetch('https://api.perplexity.ai/v1/responses', {
+    const response = await fetch('https://api.perplexity.ai/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
@@ -17,8 +17,10 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: 'sonar-pro',
-        input: query,
-        instructions: systemPrompt
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: query }
+        ]
       })
     });
 
@@ -29,9 +31,9 @@ export default async function handler(req, res) {
       return res.status(response.status).json(data);
     }
 
-    const text = data.output
-      ? data.output.map(o => o.content ? o.content.map(c => c.text).join('') : '').join('')
-      : (data.choices && data.choices[0] ? data.choices[0].message.content : 'No response.');
+    const text = data.choices && data.choices[0]
+      ? data.choices[0].message.content
+      : 'No response.';
 
     return res.status(200).json({ result: text });
   } catch (err) {
