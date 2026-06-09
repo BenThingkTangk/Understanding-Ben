@@ -17,8 +17,8 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'sonar-pro',
-        messages: [
+      model: 'sonar',
+              messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: query }
         ]
