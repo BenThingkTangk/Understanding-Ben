@@ -336,7 +336,7 @@
                 });
                 const data = await response.json();
                 if (data.choices && data.choices[0] && data.choices[0].message) {
-                    output.innerText = data.choices[0].message.content;
+                    output.innerText = data.result;
                 } else {
                     output.innerText = "Signal degraded. Error: " + (data.error ? data.error.message : "Unknown data format");
                 }
