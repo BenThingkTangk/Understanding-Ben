@@ -315,6 +315,8 @@
         animate();
         window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
 
+</script>
+<script>
         async function askAtom() {
             const query = document.getElementById('atom-query').value;
             if (!query) return;
