@@ -116,13 +116,27 @@
 
     <!-- Ask ATOM: isolated script to prevent 3D engine crashes from blocking this feature -->
     <script>
+
+                // Format markdown-style text to HTML
+        function formatResponse(text) {
+            return text
+                // Bold: **text** -> <strong>text</strong>
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                // Headers: ## text -> <h4>text</h4>
+                .replace(/^## (.+)$/gm, '<h4 style="margin-top:16px;margin-bottom:8px;color:var(--text-primary);">$1</h4>')
+                // Bullet points: - text or * text -> <li>text</li>
+                .replace(/^[\-\*] (.+)$/gm, '<li style="margin-left:20px;margin-bottom:6px;">$1</li>')
+                // Line breaks: preserve them as <br> for spacing
+                .replace(/\n\n/g, '</p><p style="margin-bottom:12px;">')
+                .replace(/\n/g, '<br>');
+        }
         async function askAtom() {
             const query = document.getElementById('atom-query').value;
             if (!query.trim()) return;
             const responseArea = document.getElementById('response-area');
             const output = document.getElementById('atom-output');
             responseArea.style.display = 'block';
-            output.innerText = 'Reaching out to Perplexity core... Decoding signal...';
+             = 'Reaching out to Perplexity core... Decoding signal...';
             try {
                 const res = await fetch('/api/ask', {
                     method: 'POST',
@@ -131,13 +145,11 @@
                 });
                 const data = await res.json();
                 if (data.result) {
-                    output.innerText = data.result;
+                     output.innerHTML = '<p>' + formatResponse(data.result) + '</p>';result;
                 } else {
-                    output.innerText = 'Signal degraded. Error: ' + (data.error || data.message || 'Unknown error');
-                }
+                    output.innerHTML = '<p>Signal degraded. Error: ' + (data.error || data.message || 'Unknown error') + '</p>';                }
             } catch (err) {
-                output.innerText = 'Signal degraded. Error: ' + err.message;
-            }
+                output.innerHTML = '<p>Signal degraded. Error: ' + err.message + '</p>';            }
         }
     </script>
 
