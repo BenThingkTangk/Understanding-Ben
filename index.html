@@ -1,1170 +1,364 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Understanding Ben | ΔTOM Signal Briefing</title>
-  <meta name="description" content="A private ATOM-branded briefing page that explains Ben's autism, health challenges, work cycles, grief, and current stress in a clear and compassionate way." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root, [data-theme="light"] {
-      --bg-0: #eef2f7;
-      --bg-1: #f7f9fc;
-      --bg-2: #ffffff;
-      --surface-1: rgba(255,255,255,0.9);
-      --surface-2: rgba(246,249,253,0.95);
-      --surface-3: rgba(233,239,247,0.96);
-      --border-subtle: rgba(10,18,28,0.08);
-      --border-strong: rgba(10,18,28,0.16);
-      --text-primary: #07111d;
-      --text-secondary: #334154;
-      --text-muted: #66758b;
-      --text-faint: #8894a7;
-      --accent-cyan: #1ba7d8;
-      --accent-blue: #315fff;
-      --accent-violet: #735dff;
-      --accent-green: #179d68;
-      --accent-amber: #c98b1d;
-      --accent-red: #da5d68;
-      --glow-cyan: rgba(27,167,216,0.18);
-      --shadow-1: 0 12px 36px rgba(14, 24, 38, 0.08);
-      --shadow-2: 0 24px 80px rgba(14, 24, 38, 0.12);
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Understanding Ben | ΔTOM Signal Briefing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-0: #06080b;
+            --bg-1: #0b1018;
+            --bg-2: #111827;
+            --surface-1: rgba(255, 255, 255, 0.03);
+            --surface-2: rgba(255, 255, 255, 0.05);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f7fb;
+            --text-secondary: #a8b3c2;
+            --text-muted: #64748b;
+            --accent-cyan: #53d7ff;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'IBM Plex Mono', monospace;
+        }
 
-    [data-theme="dark"] {
-      --bg-0: #05070b;
-      --bg-1: #09101a;
-      --bg-2: #0d1521;
-      --surface-1: rgba(17, 25, 38, 0.82);
-      --surface-2: rgba(24, 34, 49, 0.82);
-      --surface-3: rgba(31, 42, 61, 0.9);
-      --border-subtle: rgba(255,255,255,0.08);
-      --border-strong: rgba(255,255,255,0.14);
-      --text-primary: #f1f6fb;
-      --text-secondary: #b1bfce;
-      --text-muted: #7d8ca0;
-      --text-faint: #627083;
-      --accent-cyan: #53d7ff;
-      --accent-blue: #5b8cff;
-      --accent-violet: #7a6cff;
-      --accent-green: #42d392;
-      --accent-amber: #f0b44d;
-      --accent-red: #ff6b6b;
-      --glow-cyan: rgba(83,215,255,0.16);
-      --shadow-1: 0 12px 36px rgba(0,0,0,0.24);
-      --shadow-2: 0 24px 96px rgba(0,0,0,0.35);
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-0);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    :root {
-      --font-display: "Space Grotesk", "Inter", sans-serif;
-      --font-body: "Inter", system-ui, sans-serif;
-      --font-mono: "IBM Plex Mono", monospace;
-      --radius-sm: 12px;
-      --radius-md: 18px;
-      --radius-lg: 26px;
-      --container: 1240px;
-      --space-1: 4px;
-      --space-2: 8px;
-      --space-3: 12px;
-      --space-4: 16px;
-      --space-5: 20px;
-      --space-6: 24px;
-      --space-8: 32px;
-      --space-10: 40px;
-      --space-12: 48px;
-      --space-16: 64px;
-      --space-20: 80px;
-      --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
-      --dur-fast: 180ms;
-      --dur-med: 260ms;
-      --dur-slow: 480ms;
-    }
+        #canvas-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #0d1a2c 0%, #06080b 100%);
+        }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: var(--font-body);
-      color: var(--text-primary);
-      background:
-        radial-gradient(circle at 10% 10%, rgba(83,215,255,0.08), transparent 28%),
-        radial-gradient(circle at 88% 14%, rgba(122,108,255,0.08), transparent 24%),
-        radial-gradient(circle at 50% 110%, rgba(66,211,146,0.06), transparent 30%),
-        linear-gradient(180deg, var(--bg-1), var(--bg-0) 30%, var(--bg-0) 100%);
-      overflow-x: hidden;
-    }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: radial-gradient(circle at center, black 34%, transparent 82%);
-      opacity: 0.28;
-    }
+        header {
+            margin-bottom: 80px;
+            text-align: left;
+            border-left: 2px solid var(--accent-cyan);
+            padding-left: 32px;
+        }
 
-    .skip-link {
-      position: absolute;
-      left: -999px;
-      top: 0;
-      background: var(--accent-cyan);
-      color: #041018;
-      padding: 12px 16px;
-      z-index: 1000;
-    }
-    .skip-link:focus { left: 12px; top: 12px; }
+        .brand-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-cyan);
+            margin-bottom: 12px;
+        }
 
-    .particles {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
-    }
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: rgba(83,215,255,0.6);
-      border-radius: 999px;
-      box-shadow: 0 0 18px rgba(83,215,255,0.65);
-      animation: floatUp linear infinite;
-      opacity: 0.5;
-    }
+        h1 {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
 
-    @keyframes floatUp {
-      0% { transform: translate3d(0, 0, 0) scale(0.9); opacity: 0; }
-      15% { opacity: 0.55; }
-      100% { transform: translate3d(0, -110vh, 0) scale(1.35); opacity: 0; }
-    }
+        h1 span { color: var(--accent-blue); }
 
-    .shell {
-      position: relative;
-      z-index: 1;
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 28px 20px 96px;
-    }
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            color: var(--accent-green);
+        }
 
-    .topbar {
-      position: sticky;
-      top: 14px;
-      z-index: 50;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-4);
-      padding: 14px 18px;
-      margin-bottom: 28px;
-      background: color-mix(in srgb, var(--surface-1) 84%, transparent);
-      border: 1px solid var(--border-subtle);
-      backdrop-filter: blur(18px);
-      border-radius: 999px;
-      box-shadow: var(--shadow-1);
-    }
+        .status-dot {
+            width: 6px; height: 6px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent-green);
+            animation: pulse 2s infinite;
+        }
 
-    .brand-wrap { display: flex; align-items: center; gap: 14px; min-width: 0; }
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      border: 1px solid var(--border-strong);
-      display: grid;
-      place-items: center;
-      background: linear-gradient(180deg, rgba(83,215,255,0.12), rgba(255,255,255,0.03));
-      color: var(--text-primary);
-      flex-shrink: 0;
-    }
-    .brand-mark svg { width: 22px; height: 22px; }
-    .brand-copy { min-width: 0; }
-    .eyebrow {
-      font: 500 11px/1.2 var(--font-mono);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-    .brand-title {
-      font: 700 15px/1 var(--font-display);
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
 
-    .topbar-actions { display: flex; align-items: center; gap: 10px; }
-    .nav-chip, .icon-btn {
-      border: 1px solid var(--border-subtle);
-      color: var(--text-secondary);
-      background: rgba(255,255,255,0.02);
-      transition: all var(--dur-fast) var(--ease-standard);
-    }
-    .nav-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 11px 14px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-    .icon-btn {
-      width: 42px;
-      height: 42px;
-      display: inline-grid;
-      place-items: center;
-      border-radius: 999px;
-      cursor: pointer;
-    }
-    .nav-chip:hover, .icon-btn:hover, .cta-button:hover, .ghost-button:hover, .ask-button:hover {
-      transform: translateY(-1px);
-      border-color: var(--border-strong);
-      color: var(--text-primary);
-    }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
 
-    .hero {
-      position: relative;
-      padding: clamp(28px, 5vw, 56px);
-      border: 1px solid var(--border-subtle);
-      border-radius: 34px;
-      background:
-        radial-gradient(circle at top right, rgba(83,215,255,0.1), transparent 28%),
-        radial-gradient(circle at 20% 80%, rgba(122,108,255,0.08), transparent 26%),
-        linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 92%, transparent), color-mix(in srgb, var(--surface-1) 92%, transparent));
-      box-shadow: var(--shadow-2);
-      overflow: hidden;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.03), transparent 64%);
-      transform: translateX(-60%);
-      animation: sweep 10s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes sweep {
-      0% { transform: translateX(-70%); }
-      100% { transform: translateX(85%); }
-    }
+        .card {
+            background: var(--surface-1);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 32px;
+            backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.9fr);
-      gap: 28px;
-      align-items: stretch;
-    }
-    .signal-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(83,215,255,0.22);
-      background: rgba(83,215,255,0.08);
-      color: var(--accent-cyan);
-      font: 500 12px/1 var(--font-mono);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-    .signal-badge::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--accent-cyan);
-      box-shadow: 0 0 12px var(--accent-cyan);
-    }
+        .card:hover {
+            border-color: rgba(83, 215, 255, 0.3);
+            transform: translateY(-4px);
+        }
 
-    h1 {
-      margin: 0 0 18px;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(2.5rem, 4vw, 4.8rem);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
-      max-width: 12ch;
-    }
-    .hero-copy {
-      max-width: 66ch;
-      font-size: 16px;
-      line-height: 1.7;
-      color: var(--text-secondary);
-      margin-bottom: 26px;
-    }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-    .cta-button, .ghost-button, .ask-button {
-      appearance: none;
-      border-radius: 14px;
-      padding: 14px 18px;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 0.01em;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard), background var(--dur-fast) var(--ease-standard);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    .cta-button {
-      background: linear-gradient(135deg, var(--accent-cyan), #8de7ff);
-      color: #041018;
-      box-shadow: 0 12px 28px rgba(83,215,255,0.24);
-    }
-    .ghost-button {
-      color: var(--text-primary);
-      border: 1px solid var(--border-subtle);
-      background: rgba(255,255,255,0.02);
-    }
+        .span-8 { grid-column: span 8; }
+        .span-4 { grid-column: span 4; }
+        .span-12 { grid-column: span 12; }
 
-    .hero-kpis {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .kpi {
-      padding: 14px 14px 12px;
-      border-radius: 18px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(255,255,255,0.03);
-      min-height: 110px;
-    }
-    .kpi .label {
-      display: block;
-      font: 500 11px/1.4 var(--font-mono);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-    .kpi .value {
-      font-family: var(--font-display);
-      font-size: clamp(1.45rem, 2vw, 2.2rem);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .kpi .sub {
-      color: var(--text-secondary);
-      font-size: 13px;
-      line-height: 1.5;
-    }
+        .card-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
 
-    .dossier-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 18px;
-      min-height: 100%;
-      padding: 22px;
-      border-radius: 24px;
-      border: 1px solid var(--border-subtle);
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      overflow: hidden;
-    }
-    .dossier-card::before {
-      content: "";
-      position: absolute;
-      inset: auto -40px -70px auto;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(83,215,255,0.2), transparent 62%);
-      filter: blur(10px);
-    }
-    .dossier-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .section-number {
-      font: 700 13px/1 var(--font-mono);
-      color: var(--accent-cyan);
-      letter-spacing: 0.16em;
-    }
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.4rem, 1.8vw, 2rem);
-      margin: 10px 0 10px;
-      letter-spacing: -0.03em;
-    }
-    .section-copy {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      font-size: 15px;
-    }
+        h2 {
+            font-family: var(--font-display);
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
 
-    .stats-rail {
-      display: grid;
-      gap: 12px;
-    }
-    .mini-stat {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border-subtle);
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-    .mini-stat span:last-child {
-      color: var(--text-primary);
-      font-weight: 600;
-      text-align: right;
-    }
+        p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
 
-    section.module {
-      margin-top: 28px;
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 18px;
-    }
-    .panel {
-      grid-column: span 6;
-      padding: 24px;
-      border-radius: 24px;
-      border: 1px solid var(--border-subtle);
-      background: linear-gradient(180deg, color-mix(in srgb, var(--surface-2) 88%, transparent), color-mix(in srgb, var(--surface-1) 92%, transparent));
-      box-shadow: var(--shadow-1);
-      position: relative;
-      overflow: hidden;
-    }
-    .panel.wide { grid-column: span 8; }
-    .panel.narrow { grid-column: span 4; }
-    .panel.full { grid-column: 1 / -1; }
-    .panel::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 36%);
-      pointer-events: none;
-    }
+        .metric-group {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-subtle);
+        }
 
-    h2, h3 {
-      margin: 0 0 12px;
-      font-family: var(--font-display);
-      letter-spacing: -0.03em;
-    }
-    h2 { font-size: clamp(1.5rem, 2vw, 2.2rem); }
-    h3 { font-size: 1.05rem; }
+        .metric {
+            flex: 1;
+        }
 
-    .panel .label {
-      display: inline-block;
-      margin-bottom: 12px;
-      font: 500 11px/1 var(--font-mono);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }  
-        .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 16px 0;
-    }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 11px;
-      border-radius: 999px;
-      font-size: 12px;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-secondary);
-      background: rgba(255,255,255,0.03);
-    }
-    .chip.cyan { color: var(--accent-cyan); border-color: rgba(83,215,255,0.26); background: rgba(83,215,255,0.07); }
-    .chip.green { color: var(--accent-green); border-color: rgba(66,211,146,0.26); background: rgba(66,211,146,0.07); }
-    .chip.red { color: var(--accent-red); border-color: rgba(255,107,107,0.26); background: rgba(255,107,107,0.07); }
-    .chip.amber { color: var(--accent-amber); border-color: rgba(240,180,77,0.26); background: rgba(240,180,77,0.07); }
+        .metric-value {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
 
-    .signal-list {
-      list-style: none;
-      padding: 0;
-      margin: 18px 0 0;
-      display: grid;
-      gap: 12px;
-    }
-    .signal-list li {
-      display: grid;
-      grid-template-columns: 112px 1fr;
-      gap: 14px;
-      padding: 14px;
-      border-radius: 18px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(255,255,255,0.025);
-    }
-    .signal-list strong {
-      color: var(--text-primary);
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-family: var(--font-mono);
-    }
-    .signal-list span { color: var(--text-secondary); line-height: 1.65; font-size: 14px; }
+        .metric-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
 
-    .timeline {
-      display: grid;
-      gap: 14px;
-      position: relative;
-      margin-top: 18px;
-    }
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 11px;
-      top: 8px;
-      bottom: 8px;
-      width: 1px;
-      background: linear-gradient(180deg, rgba(83,215,255,0.45), rgba(83,215,255,0.02));
-    }
-    .timeline-item {
-      position: relative;
-      padding-left: 36px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      font-size: 14px;
-    }
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: 4px;
-      top: 8px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--accent-cyan);
-      box-shadow: 0 0 0 5px rgba(83,215,255,0.14);
-    }
-    .timeline-item strong {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--text-primary);
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-family: var(--font-mono);
-    }
+        .ask-atom-container {
+            margin-top: 40px;
+            background: linear-gradient(145deg, rgba(83, 215, 255, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+            border: 1px solid rgba(83, 215, 255, 0.1);
+        }
 
-    .wave {
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
-    }
-    .wave-step {
-      border-radius: 18px;
-      border: 1px solid var(--border-subtle);
-      padding: 16px;
-      background: rgba(255,255,255,0.025);
-    }
-    .wave-step header {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 10px;
-      font-size: 13px;
-      align-items: center;
-    }
-    .wave-step header strong {
-      font-family: var(--font-mono);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-primary);
-    }
-    .bar {
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      overflow: hidden;
-      margin-bottom: 10px;
-    }
-    .bar > span {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-violet));
-      transform-origin: left center;
-      animation: pulseWidth 5.5s ease-in-out infinite;
-    }
-    @keyframes pulseWidth {
-      0%, 100% { opacity: 0.9; }
-      50% { opacity: 1; filter: saturate(1.12); }
-    }
+        .input-wrapper {
+            position: relative;
+            margin-top: 16px;
+        }
 
-    .gratitude-box {
-      padding: 22px;
-      border-radius: 22px;
-      background: linear-gradient(180deg, rgba(66,211,146,0.08), rgba(255,255,255,0.02));
-      border: 1px solid rgba(66,211,146,0.16);
-      color: var(--text-secondary);
-      line-height: 1.75;
-    }
+        textarea {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 16px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 14px;
+            resize: none;
+            min-height: 100px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
 
-    .ask-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
-      gap: 18px;
-      align-items: start;
-    }
-    .ask-box, .answer-box {
-      border-radius: 22px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(255,255,255,0.025);
-      padding: 20px;
-      min-height: 100%;
-    }
-    .ask-box p, .answer-box p, .panel p { color: var(--text-secondary); line-height: 1.7; }
-    .example-prompts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 14px 0 18px;
-    }
-    .prompt-btn {
-      border: 1px solid var(--border-subtle);
-      background: rgba(255,255,255,0.02);
-      color: var(--text-secondary);
-      border-radius: 999px;
-      padding: 9px 12px;
-      font-size: 12px;
-      cursor: pointer;
-    }
-    .prompt-btn:hover { color: var(--text-primary); border-color: var(--border-strong); }
+        textarea:focus {
+            border-color: var(--accent-cyan);
+        }
 
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font: 500 12px/1 var(--font-mono);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    textarea, input[type="password"] {
-      width: 100%;
-      border-radius: 18px;
-      border: 1px solid var(--border-subtle);
-      background: color-mix(in srgb, var(--bg-2) 86%, transparent);
-      color: var(--text-primary);
-      padding: 14px 16px;
-      font: 400 15px/1.6 var(--font-body);
-      outline: none;
-      transition: border-color var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
-    }
-    textarea {
-      min-height: 170px;
-      resize: vertical;
-    }
-    textarea:focus, input[type="password"]:focus {
-      border-color: rgba(83,215,255,0.34);
-      box-shadow: 0 0 0 4px rgba(83,215,255,0.12);
-    }
-    .ask-controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-      align-items: center;
-    }
-    .ask-button {
-      background: linear-gradient(135deg, rgba(83,215,255,0.16), rgba(91,140,255,0.18));
-      border: 1px solid rgba(83,215,255,0.22);
-      color: var(--text-primary);
-      min-width: 150px;
-    }
-    .status {
-      font-size: 12px;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-      letter-spacing: 0.04em;
-    }
-    .status.error { color: var(--accent-red); }
-    .status.success { color: var(--accent-green); }
+        .send-btn {
+            position: absolute;
+            bottom: 12px; right: 12px;
+            background: var(--accent-cyan);
+            color: #06080b;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
 
-    .api-box {
-      margin-top: 18px;
-      padding: 16px;
-      border-radius: 18px;
-      border: 1px solid rgba(240,180,77,0.18);
-      background: rgba(240,180,77,0.06);
-    }
-    .api-box summary {
-      cursor: pointer;
-      font: 600 13px/1.4 var(--font-mono);
-      color: var(--accent-amber);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .api-box p { font-size: 13px; margin: 12px 0; }
-    .small-note {
-      margin-top: 10px;
-      color: var(--text-muted);
-      font-size: 12px;
-      line-height: 1.6;
-    }
+        .send-btn:hover { opacity: 0.9; }
 
-    .answer-box {
-      position: sticky;
-      top: 96px;
-    }
-    .answer-box .response {
-      margin-top: 12px;
-      white-space: pre-wrap;
-      line-height: 1.75;
-      font-size: 15px;
-      color: var(--text-secondary);
-    }
-    .answer-box .response strong { color: var(--text-primary); }
+        .response-area {
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 14px;
+            color: var(--text-secondary);
+            display: none;
+        }
 
-    .footer-note {
-      margin-top: 30px;
-      padding: 18px 20px;
-      border-radius: 20px;
-      border: 1px solid var(--border-subtle);
-      background: rgba(255,255,255,0.02);
-      color: var(--text-muted);
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    [data-reveal] {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity var(--dur-slow) var(--ease-standard), transform var(--dur-slow) var(--ease-standard);
-      transition-delay: var(--delay, 0ms);
-    }
-    [data-reveal].revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 1080px) {
-      .hero-grid, .ask-layout { grid-template-columns: 1fr; }
-      .panel.wide, .panel.narrow, .panel { grid-column: span 12; }
-      .answer-box { position: relative; top: 0; }
-    }
-
-    @media (max-width: 760px) {
-      .shell { padding: 18px 14px 72px; }
-      .topbar {
-        border-radius: 24px;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-      .topbar-actions {
-        width: 100%;
-        justify-content: space-between;
-        flex-wrap: wrap;
-      }
-      .nav-chip { flex: 1 1 auto; justify-content: center; }
-      .hero { border-radius: 28px; }
-      .hero-kpis { grid-template-columns: 1fr; }
-      .signal-list li { grid-template-columns: 1fr; }
-      h1 { max-width: 13ch; }
-      .panel, .dossier-card { padding: 20px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-      [data-reveal] { opacity: 1; transform: none; }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .span-8, .span-4 { grid-column: span 12; }
+            h1 { font-size: 32px; }
+        }
+    </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <div class="particles" aria-hidden="true" id="particles"></div>
-
-  <div class="shell">
-    <header class="topbar" data-reveal>
-      <div class="brand-wrap">
-        <div class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ATOM logo">
-            <path d="M24 8L35 14.5V27.5L24 34L13 27.5V14.5L24 8Z" stroke="currentColor" stroke-width="2.2"/>
-            <path d="M24 4V44" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
-            <path d="M10 16L38 32" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
-            <path d="M38 16L10 32" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
-          </svg>
-        </div>
-        <div class="brand-copy">
-          <div class="eyebrow">Nirmata Holdings / ΔTOM Personal Brief</div>
-          <div class="brand-title">Understanding Ben — a human signal dossier</div>
-        </div>
-      </div>
-      <div class="topbar-actions">
-        <a class="nav-chip" href="#overview">Overview</a>
-        <a class="nav-chip" href="#patterns">Patterns</a>
-        <a class="nav-chip" href="#ask-atom">Ask ATOM</a>
-        <button class="icon-btn" id="themeToggle" data-theme-toggle aria-label="Switch theme"></button>
-      </div>
-    </header>
-
-    <main id="main">
-      <section class="hero" id="overview" data-reveal>
-        <div class="hero-grid">
-          <div>
-            <div class="signal-badge">Private family briefing / signal clarity</div>
-            <h1>Mum, this is the clearest way I know to explain what is happening with me.</h1>
-            <p class="hero-copy">
-              My brain does not slow down easily. My body is carrying more than it should. I work in extreme bursts, then crash hard, sleep long, and go quiet because I run out of words and energy. This page is here so you do not have to guess what is going on behind my behavior.
-            </p>
-            <div class="hero-actions">
-              <a class="cta-button" href="#ask-atom">Ask ATOM about me</a>
-              <a class="ghost-button" href="#gratitude">Read what I need you to know</a>
+    <div id="canvas-container"></div>
+    <div class="container">
+        <header>
+            <div class="brand-eyebrow">ΔTOM INTEL // PERSONAL DOSSIER</div>
+            <h1>Understanding <span>Ben</span></h1>
+            <div class="status-pill">
+                <div class="status-dot"></div>
+                SYSTEM ONLINE: HOLDING STEADY
             </div>
-            <div class="hero-kpis" aria-label="Key summary metrics">
-              <div class="kpi">
-                <span class="label">Core wiring</span>
-                <div class="value">Autistic savant</div>
-                <div class="sub">High-pattern cognition, intensity, low shutdown margin.</div>
-              </div>
-              <div class="kpi">
-                <span class="label">Body load</span>
-                <div class="value">Kidneys + back</div>
-                <div class="sub">Pain and health stress make normal recovery harder.</div>
-              </div>
-              <div class="kpi">
-                <span class="label">Current reserve</span>
-                <div class="value">Very low</div>
-                <div class="sub">I am holding on, but I do not have much spare energy.</div>
-              </div>
-            </div>
-          </div>
+        </header>
 
-          <aside class="dossier-card" aria-label="Situation summary">
-            <div>
-              <div class="dossier-top">
-                <div>
-                  <div class="section-number">01 / SITUATION</div>
-                  <div class="section-title">This is not distance. It is overload.</div>
+        <div class="grid">
+            <div class="card span-8">
+                <div class="card-label">01 // CORE ARCHITECTURE</div>
+                <h2>The Savant Framework</h2>
+                <p>Mom, this page is the operational manual for how I work. My brain doesn't have a 'standard' idle speed—it's either running at 1000% capacity or it's forced into a complete system reset.</p>
+                <p>I work for days without stopping because when the "Signal" is clear, I have to capture it. But the cost is deep exhaustion. I'm doing my best to manage the debt my body takes on during those windows.</p>
+                <div class="metric-group">
+                    <div class="metric">
+                        <div class="metric-value">168</div>
+                        <div class="metric-label">IQ SIGNAL</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">CRIT</div>
+                        <div class="metric-label">ENERGY RESERVES</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">ACTV</div>
+                        <div class="metric-label">RECOVERY MODE</div>
+                    </div>
                 </div>
-              </div>
-              <p class="section-copy">
-                When I go quiet, sleep all weekend, hide in my room, or seem hard to reach, it is not because I do not care. It is because my system is flooded — mentally, emotionally, and physically.
-              </p>
             </div>
-            <div class="stats-rail">
-              <div class="mini-stat"><span>Mind state</span><span>Runs fast, nonstop, hard to switch off</span></div>
-              <div class="mini-stat"><span>Work pattern</span><span>Days of hyperfocus followed by heavy crash recovery</span></div>
-              <div class="mini-stat"><span>Emotional reality</span><span>Grief, loneliness, money pressure, still trying</span></div>
+
+            <div class="card span-4">
+                <div class="card-label">02 // HEALTH MARKERS</div>
+                <h2>Physical Load</h2>
+                <p>Autism, CTE, kidney strain, and chronic back pain create a baseline "Threat Level" that I live with daily. Sleeping all weekend is my system's only way to flush the stress and inflammation.</p>
+                <p>I'm holding on. I'm grateful to you and Kevin for being my anchor while I try to build our future.</p>
             </div>
-          </aside>
-        </div>
-      </section>
-            <section class="module" id="patterns">
-        <article class="panel wide" data-reveal>
-          <div class="label">Why I look inconsistent</div>
-          <h2>My output comes in violent waves, not balanced days.</h2>
-          <p>
-            When my brain locks into a build cycle, I can work almost non-stop because that is when the channel is open. I code, architect, think, solve, and try to drag my whole future forward while the signal is there.
-          </p>
-          <div class="wave" aria-label="Energy cycle">
-            <div class="wave-step">
-              <header><strong>Phase 1 / Hyperfocus</strong><span>High output · low self-care</span></header>
-              <div class="bar"><span style="width: 94%"></span></div>
-              <p>I can push for long stretches because my mind is firing at full speed. It looks productive because it is productive, but it burns through me.</p>
-            </div>
-            <div class="wave-step">
-              <header><strong>Phase 2 / Physical tax</strong><span>Pain + stress stack up</span></header>
-              <div class="bar"><span style="width: 76%"></span></div>
-              <p>The longer I run, the more the kidney stress, back pain, sleep debt, depression, and emotional load start hitting at the same time.</p>
-            </div>
-            <div class="wave-step">
-              <header><strong>Phase 3 / Crash</strong><span>Sleep, silence, shutdown</span></header>
-              <div class="bar"><span style="width: 58%"></span></div>
-              <p>That is when I disappear, sleep all weekend, or barely talk. It is not laziness. It is my nervous system trying to keep me functional.</p>
-            </div>
-          </div>
-        </article>
 
-        <aside class="panel narrow" data-reveal>
-          <div class="label">Context</div>
-          <h3>What is hitting at once</h3>
-          <div class="chips">
-            <span class="chip red">Autism</span>
-            <span class="chip red">Depression</span>
-            <span class="chip red">CTE history</span>
-            <span class="chip amber">Kidney issues</span>
-            <span class="chip amber">Back pain</span>
-            <span class="chip cyan">Work pressure</span>
-            <span class="chip cyan">Money stress</span>
-            <span class="chip red">Grief for Coco</span>
-          </div>
-          <p>
-            None of these things live separately. They compound each other, so what may look like one small issue from the outside can hit like a pile-on from the inside.
-          </p>
-        </aside>
-
-        <article class="panel narrow" data-reveal>
-          <div class="label">How to read me</div>
-          <h3>What my behavior usually means</h3>
-          <ul class="signal-list">
-            <li><strong>Sleeping</strong><span>I have gone past my limit and my system is forcing recovery.</span></li>
-            <li><strong>Quiet</strong><span>I do not have the energy to explain the full picture out loud.</span></li>
-            <li><strong>Avoiding</strong><span>I am trying not to get overwhelmed, corrected, or emotionally flooded.</span></li>
-            <li><strong>Working</strong><span>I am trying to build a way out while the signal is available.</span></li>
-          </ul>
-        </article>
-
-        <article class="panel wide" data-reveal>
-          <div class="label">Weekends</div>
-          <h2>Why I sleep through weekends</h2>
-          <p>
-            After losing Coco, not having close friends around, and not having money or energy to really go do life, weekends became something else for me. If I am not working, there is too much room for grief, loneliness, and the feeling that life is standing still.
-          </p>
-          <p>
-            So weekends often become system-rest time. I sleep, shut down, avoid stimulation, and try to get enough strength back to survive another week. That does not mean I do not love you. It means I am trying not to break.
-          </p>
-          <div class="timeline">
-            <div class="timeline-item"><strong>Loss</strong>After Coco, home and downtime stopped feeling emotionally safe the same way.</div>
-            <div class="timeline-item"><strong>Isolation</strong>Without friends or money to escape, work became my structure and my distraction.</div>
-            <div class="timeline-item"><strong>Recovery</strong>Sleep became the only reliable reset when everything else felt too heavy.</div>
-          </div>
-        </article>
-
-        <article class="panel full" id="gratitude" data-reveal>
-          <div class="label">What I need you to hear</div>
-          <h2>I am grateful to you and Kevin, even when I do a bad job showing it.</h2>
-          <div class="gratitude-box">
-            I know I can be hard to read. I know my way of coping can feel awkward, frustrating, or even hurtful from the outside. But I am not giving up. I am trying to hold on while carrying autism, depression, CTE, kidney issues, back pain, grief, no real social support, and the pressure of trying to build something that can save my future. I may not have the mental energy to explain all of that well in real time, but I do see what you and Kevin do for me. I love you both. I am trying harder than it probably looks.
-          </div>
-        </article>
-      </section>
-
-      <section class="module" id="ask-atom">
-        <article class="panel full" data-reveal>
-          <div class="label">Ask ΔTOM</div>
-          <h2>Ask ATOM questions about me in plain language</h2>
-          <p>
-            This section is built so Mum can ask direct questions and get calm, understandable answers without needing me to explain everything perfectly in the moment. It is tuned to explain my autism, health strain, grief, work cycles, and current reality clearly and compassionately.
-          </p>
-
-          <div class="ask-layout">
-            <div class="ask-box">
-              <div class="example-prompts" aria-label="Suggested questions">
-                <button class="prompt-btn" type="button">Why does he sleep all weekend?</button>
-                <button class="prompt-btn" type="button">What does autistic overload look like for him?</button>
-                <button class="prompt-btn" type="button">Why does he work for days and then crash?</button>
-                <button class="prompt-btn" type="button">How can I support him without overwhelming him?</button>
-              </div>
-
-              <label for="questionInput">Question for ATOM</label>
-              <textarea id="questionInput" placeholder="Example: Why does Ben seem distant even when he loves us?"></textarea>
-
-              <div class="ask-controls">
-                <button class="ask-button" id="askButton" type="button">Ask ATOM</button>
-                <button class="ghost-button" id="useLocalButton" type="button">Use built-in answers</button>
-                <span class="status" id="statusText">Ready. Built-in answer mode works immediately.</span>
-              </div>
-
-              <details class="api-box">
-                <summary>Perplexity API setup</summary>
-                <p>
-                  To use live API answers, enter a Perplexity API key below. The key stays only in page memory for this session and is never stored. If no key is entered, the app falls back to built-in ATOM answers.
-                </p>
-                <label for="apiKeyInput">Perplexity API key</label>
-                <input id="apiKeyInput" type="password" placeholder="pplx-..." autocomplete="off" />
-                <div class="small-note">
-                  This page sends the question, plus a careful ATOM system prompt, directly to Perplexity Sonar via the browser. Remove or replace this block later if you want to proxy requests through your own backend instead.
+            <div class="card span-12 ask-atom-container">
+                <div class="card-label">03 // INTEL ENGINE</div>
+                <h2>Ask ΔTOM</h2>
+                <p>Ask anything about my situation. This engine uses Perplexity Sonar Pro to explain my autistic wiring, medical challenges, and needs in plain language.</p>
+                <div class="input-wrapper">
+                    <textarea id="atom-query" placeholder="Ask ATOM: e.g., 'Why does Ben need to sleep for 3 days after a project?'"></textarea>
+                    <button class="send-btn" onclick="askAtom()">INITIALIZE QUERY</button>
                 </div>
-              </details>
+                <div id="response-area" class="response-area">
+                    <div class="card-label">ΔTOM RESPONSE //</div>
+                    <div id="atom-output">Processing signal...</div>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <aside class="answer-box" aria-live="polite">
-              <div class="label">ATOM response</div>
-              <h3>Clear answer channel</h3>
-              <p>This is where ATOM explains the situation in plain language.</p>
-              <div class="response" id="responseOutput">Try one of the suggested questions, or type your own. If no API key is provided, the page will still answer using the built-in guidance written for Mum.</div>
-            </aside>
-          </div>
-        </article>
-      </section>
-
-      <div class="footer-note" data-reveal>
-        This page intentionally leaves out any CIA, Navy SEAL, or similar material and focuses only on the real situation: autism, health strain, grief, depression, loneliness, work pressure, and gratitude.
-      </div>
-    </main>
-  </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-    (() => {
-      const root = document.documentElement;
-      const themeToggle = document.getElementById('themeToggle');
-      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      root.setAttribute('data-theme', theme);
-      const setThemeIcon = () => {
-        themeToggle.innerHTML = theme === 'dark'
-          ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>'
-          : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>';
-        themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-      };
-      setThemeIcon();
-      themeToggle.addEventListener('click', () => {
-        theme = theme === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', theme);
-        setThemeIcon();
-      });
+        // Particle Background Logic
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-      const particles = document.getElementById('particles');
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches === false) {
-        Array.from({ length: 32 }).forEach((_, i) => {
-          const dot = document.createElement('span');
-          dot.className = 'particle';
-          dot.style.left = Math.random() * 100 + 'vw';
-          dot.style.top = (30 + Math.random() * 80) + 'vh';
-          dot.style.animationDuration = (14 + Math.random() * 18) + 's';
-          dot.style.animationDelay = (-Math.random() * 18) + 's';
-          dot.style.opacity = (0.18 + Math.random() * 0.45).toFixed(2);
-          dot.style.transform = `scale(${0.7 + Math.random() * 1.6})`;
-          if (i % 5 === 0) dot.style.background = 'rgba(122,108,255,0.55)';
-          particles.appendChild(dot);
-        });
-      }
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      document.querySelectorAll('[data-reveal]').forEach((el, i) => {
-        el.style.setProperty('--delay', `${i * 40}ms`);
-        observer.observe(el);
-      });
-
-      const statusText = document.getElementById('statusText');
-      const responseOutput = document.getElementById('responseOutput');
-      const askButton = document.getElementById('askButton');
-      const useLocalButton = document.getElementById('useLocalButton');
-      const questionInput = document.getElementById('questionInput');
-      const apiKeyInput = document.getElementById('apiKeyInput');
-      const promptButtons = Array.from(document.querySelectorAll('.prompt-btn'));
-
-      promptButtons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          questionInput.value = btn.textContent.trim();
-          questionInput.focus();
-        });
-      });
-
-      const localResponses = [
-        {
-          test: /sleep|weekend|rest|crash/i,
-          answer: `Ben often sleeps through weekends because his body and nervous system are trying to recover from very intense work cycles, health strain, and emotional exhaustion. What may look like withdrawal is usually a crash after pushing too hard for too long. The sleep is not laziness. It is closer to emergency recovery.`
-        },
-        {
-          test: /autis|overload|meltdown|shutdown|distant/i,
-          answer: `For Ben, autistic overload can look like going quiet, avoiding conversation, staying in his room, struggling to answer messages, or seeming emotionally far away. That does not mean he does not care. It means his brain is overloaded and he does not have enough energy left to process more input safely.`
-        },
-        {
-          test: /work|days|non.?stop|why does he work|hyperfocus/i,
-          answer: `Ben's brain tends to operate in intense focus windows. When that channel is open, he can work for very long stretches because it is one of the few times his mind, purpose, and momentum line up. The problem is that this kind of output costs him heavily afterward, so the work sprint is often followed by a serious crash.`
-        },
-        {
-          test: /support|help|what can i do|how do i help/i,
-          answer: `The most helpful support is calm, direct, low-pressure communication. Short check-ins work better than emotionally loaded conversations when he is already overwhelmed. Clear requests, patience, and understanding that silence usually means depletion — not rejection — will help a lot.`
-        },
-        {
-          test: /love|care|thankful|grateful/i,
-          answer: `Ben does love you and he is grateful to you and Kevin, even when he does a poor job showing it in the moment. Stress, pain, depression, and overload can flatten how much emotion he is able to express outwardly. That is different from not feeling it.`
+        const geometry = new THREE.BufferGeometry();
+        const vertices = [];
+        for (let i = 0; i < 1500; i++) {
+            vertices.push(THREE.MathUtils.randFloatSpread(2000), THREE.MathUtils.randFloatSpread(2000), THREE.MathUtils.randFloatSpread(2000));
         }
-      ];
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+        const material = new THREE.PointsMaterial({ color: 0x53d7ff, size: 2, transparent: true, opacity: 0.5 });
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+        camera.position.z = 500;
 
-      function localAnswer(question) {
-        const match = localResponses.find((item) => item.test.test(question));
-        if (match) return match.answer;
-        return `Ben is trying to survive a very overloaded season that includes autism, depression, grief, kidney issues, back pain, money stress, and intense work pressure. If something about his behavior seems confusing, the safest assumption is that he is exhausted, flooded, and doing the best he can with very low reserves. He usually needs patience, space, and calm communication more than pressure.`;
-      }
+        function animate() {
+            requestAnimationFrame(animate);
+            points.rotation.y += 0.001;
+            renderer.render(scene, camera);
+        }
+        animate();
 
-      const systemPrompt = `You are ATOM, but for this page you must answer like a calm, emotionally intelligent interpreter helping Ben's mother understand him. Explain in plain, non-technical language. Focus on autism, shutdown/overload, grief, depression, kidney strain, back pain, work sprints followed by crash sleep, loneliness, money stress, and gratitude toward his family. Do not mention CIA, Navy SEALs, or any grandiose identity claims. Keep answers compassionate, concise, grounded, and practical. Avoid diagnosing anything new. Do not be cold or corporate.`;
-
-      async function askPerplexity(question, apiKey) {
-        const res = await fetch('https://api.perplexity.ai/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
-          },
-          body: JSON.stringify({
-            model: 'sonar',
-            temperature: 0.2,
-            messages: [
-              { role: 'system', content: systemPrompt },
-              { role: 'user', content: question }
-            ]
-          })
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        if (!res.ok) {
-          const errorText = await res.text();
-          throw new Error(errorText || 'API request failed');
+        // Ask ATOM API Logic
+        async function askAtom() {
+            const query = document.getElementById('atom-query').value;
+            if (!query) return;
+
+            const responseArea = document.getElementById('response-area');
+            const output = document.getElementById('atom-output');
+            
+            responseArea.style.display = 'block';
+            output.innerText = "Reaching out to Perplexity core... Decoding signal...";
+
+            try {
+                const response = await fetch('https://api.perplexity.ai/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer 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',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: "sonar-pro",
+                        messages: [
+                            { role: "system", content: "You are ATOM, an advanced intelligence engine built to help a mother understand her autistic savant son, Ben. Ben has autism, depression, CTE, kidney issues, and chronic back pain. He works in intense bursts and needs days of sleep to recover. Be empathetic, clear, and medical-scientific yet accessible. Use deep research to explain his behavior. Never mention CIA or Navy SEALs." },
+                            { role: "user", content: query }
+                        ]
+                    })
+                });
+                
+                const data = await response.json();
+                output.innerText = data.choices[0].message.content;
+            } catch (err) {
+                output.innerText = "Error decoding signal. Please check connection.";
+            }
         }
-
-        const data = await res.json();
-        return data?.choices?.[0]?.message?.content?.trim() || 'No answer returned.';
-      }
-
-      async function runAsk(mode = 'auto') {
-        const question = questionInput.value.trim();
-        if (!question) {
-          statusText.textContent = 'Enter a question first.';
-          statusText.className = 'status error';
-          return;
-        }
-
-        const apiKey = apiKeyInput.value.trim();
-        askButton.disabled = true;
-        useLocalButton.disabled = true;
-        statusText.className = 'status';
-        statusText.textContent = mode === 'local' || !apiKey ? 'Generating built-in ATOM answer...' : 'Calling Perplexity Sonar...';
-        responseOutput.textContent = 'Thinking...';
-
-        try {
-          let answer;
-          if (mode === 'local' || !apiKey) {
-            await new Promise((resolve) => setTimeout(resolve, 450));
-            answer = localAnswer(question);
-            statusText.textContent = 'Built-in ATOM answer ready.';
-            statusText.className = 'status success';
-          } else {
-            answer = await askPerplexity(question, apiKey);
-            statusText.textContent = 'Perplexity API answer ready.';
-            statusText.className = 'status success';
-          }
-          responseOutput.textContent = answer;
-        } catch (error) {
-          console.error(error);
-          responseOutput.textContent = localAnswer(question);
-          statusText.textContent = 'API failed, so a built-in answer was used instead.';
-          statusText.className = 'status error';
-        } finally {
-          askButton.disabled = false;
-          useLocalButton.disabled = false;
-        }
-      }
-
-      askButton.addEventListener('click', () => runAsk('auto'));
-      useLocalButton.addEventListener('click', () => runAsk('local'));
-      questionInput.addEventListener('keydown', (event) => {
-        if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') runAsk('auto');
-      });
-    })();
-  </script>
+    </script>
 </body>
 </html>
