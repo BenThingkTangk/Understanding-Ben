@@ -335,8 +335,12 @@
                     })
                 });
                 const data = await response.json();
-                output.innerText = data.choices[0].message.content;
-            } catch (err) { output.innerText = "Error decoding signal. Please check connection."; }
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                    output.innerText = data.choices[0].message.content;
+                } else {
+                    output.innerText = "Signal degraded. Error: " + (data.error ? data.error.message : "Unknown data format");
+                }
+            } catch (err) { output.innerText = "Error decoding signal. Error: " + err.message; }
         }
         document.getElementById('query-btn').addEventListener('click', askAtom);
     </script>
